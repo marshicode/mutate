@@ -31,7 +31,7 @@ export function PacksScreen() {
         </div>
       </div>
 
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))', gap:16, marginBottom:28 }}>
+      <div className="pack-grid">
         {PACKS.map(pack => {
           const cur = currency[pack.id] ?? 'credits';
           const cost = cur === 'credits' ? pack.costCredits : pack.costResidue;

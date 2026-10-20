@@ -18,8 +18,6 @@ insert into public.card_catalog (id, name, rarity, strain, potency, stability, f
 ('troll',   'TROLL',   'common', 'HUMANOID', 12, 48, 'Ancient meme energy. Still trolling after all these years.', 'troll'),
 ('andy',    'ANDY',    'common', 'HUMANOID', 14, 42, 'Matt Furie\'s forgotten son. Lives in PEPE\'s shadow.', 'andy'),
 ('slerf',   'SLERF',   'common', 'SLOTH',    11, 35, 'Burned $10M by mistake. Became a legend for 48 hours.', 'slerf'),
-('hpos10i', 'HPOS10I', 'common', 'ABSTRACT', 15, 28, 'Harry Potter. Obama. Sonic. 10. Inu. Yes, all of them.', 'hpos10i'),
-('spx6900', 'SPX6900', 'common', 'ABSTRACT', 13, 55, 'Financial meme culture distilled into a single number.', 'spx6900'),
 ('michi',   'MICHI',   'common', 'FELINE',   16, 38, 'Solana\'s cutest niche obsession.', 'michi');
 
 -- RARE (Tier 3)

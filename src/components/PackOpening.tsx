@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useAppState } from '../store';
 import { cardArtJSX } from '../data/cards';
 import type { CardDef } from '../data/cards';
+import { CardBackFace } from './Card';
 
 export function PackOpening() {
   const { state, dispatch } = useAppState();
@@ -72,27 +73,23 @@ export function PackOpening() {
         {step === 'reveal' && (
           <>
             <div style={{ fontFamily:'var(--mono)', fontSize:11, letterSpacing:'.12em', color:'var(--ink-3)', marginBottom:12 }}>
-              TAP TO REVEAL {revealed}/{data.cards.length}
+              {revealed < data.cards.length
+                ? `TAP TO REVEAL ${revealed}/${data.cards.length}`
+                : 'TAP TO CONTINUE'}
             </div>
             <div className="pack-opening__cards">
               {data.cards.map((card, i) => (
                 <div key={i} className="pack-opening__card">
-                  <div style={{ perspective: 1000 }}>
-                    <div
-                      className="card"
-                      data-rarity={card.rarity}
-                      data-holo={card.rarity === 'legendary' || card.rarity === 'mythic'}
-                      style={{
-                        transform: i < revealed ? 'rotateY(0deg)' : 'rotateY(180deg)',
-                        transition: 'transform .7s cubic-bezier(.22,1,.36,1)',
-                        aspectRatio: '5/7.2',
-                      }}
-                    >
-                      {i < revealed ? (
-                        <CardLite card={card} />
-                      ) : (
-                        <div className="card-back" />
-                      )}
+                  <div className="reveal-card" data-revealed={i < revealed}>
+                    <div className="reveal-card__inner">
+                      <div className="reveal-card__face back">
+                        <CardBackFace />
+                      </div>
+                      <div className="reveal-card__face front">
+                        <div className="card" data-rarity={card.rarity} data-holo={card.rarity === 'legendary' || card.rarity === 'mythic'}>
+                          <CardLite card={card} />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   {i < revealed && (
@@ -104,7 +101,16 @@ export function PackOpening() {
               ))}
             </div>
             <div style={{ marginTop: 20 }}>
-              <button className="btn btn--ghost" onClick={(e) => { e.stopPropagation(); setRevealed(data.cards.length); }}>Reveal all</button>
+              <button
+                className="btn btn--ghost"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (revealed < data.cards.length) setRevealed(data.cards.length);
+                  else setStep('summary');
+                }}
+              >
+                {revealed < data.cards.length ? 'Reveal all' : 'Continue'}
+              </button>
             </div>
           </>
         )}
@@ -129,7 +135,7 @@ function CardLite({ card }: { card: CardDef }) {
     <div className="card__stage">
       <div className="card__band" />
       <div className="card__art">
-        <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="60 20 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           {cardArtJSX(card.artKey)}
         </svg>
       </div>

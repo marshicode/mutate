@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 import { byId } from '../data/cards';
-import type { Rarity } from '../data/cards';
+import type { CardDef, Rarity } from '../data/cards';
 import { RARITY_ORDER, nextRarity } from '../data/odds';
 import { useAppState, useActions } from '../store';
-import { Card } from '../components/Card';
+import { Card, CardMini } from '../components/Card';
 import { canFuse } from '../lib/game';
 
 export function FusionScreen() {
@@ -26,6 +26,19 @@ export function FusionScreen() {
 
   const candidates = byRarity[selectedRarity] ?? [];
   const next = nextRarity(selectedRarity);
+
+  // group duplicate copies so the tray shows one tile per character
+  const grouped = useMemo(() => {
+    const map = new Map<string, { card: CardDef; uids: string[] }>();
+    for (const item of candidates) {
+      const card = byId[item.cardId];
+      if (!card) continue;
+      const entry = map.get(card.id) ?? { card, uids: [] };
+      entry.uids.push(item.uid);
+      map.set(card.id, entry);
+    }
+    return [...map.values()];
+  }, [candidates]);
 
   const select = (uid: string) => {
     if (selectedUids.includes(uid)) {
@@ -99,17 +112,21 @@ export function FusionScreen() {
         <div className="fusion__tray">
           <h3 className="label">Inventory — {selectedRarity}</h3>
           <div className="fusion__list">
-            {candidates.map(item => {
-              const card = byId[item.cardId];
-              if (!card) return null;
-              const active = selectedUids.includes(item.uid);
+            {grouped.map(entry => {
+              const selectedCount = entry.uids.filter(u => selectedUids.includes(u)).length;
+              const remaining = entry.uids.filter(u => !selectedUids.includes(u));
               return (
-                <div key={item.uid} className={`tray-thumb ${active ? '' : ''}`} onClick={() => select(item.uid)} style={{ outline: active ? `2px solid var(--accent)` : 'none' }}>
-                  <Card card={card} size="sm" />
+                <div
+                  key={entry.card.id}
+                  className={`tray-thumb ${selectedCount > 0 ? 'selected' : ''} ${remaining.length === 0 ? 'disabled' : ''}`}
+                  onClick={() => remaining[0] && select(remaining[0])}
+                  title={`${entry.card.name} — ${entry.uids.length} owned`}
+                >
+                  <CardMini card={entry.card} count={entry.uids.length} />
                 </div>
               );
             })}
-            {candidates.length === 0 && <div style={{ color:'var(--ink-3)', fontSize:12 }}>No specimens of this rarity.</div>}
+            {grouped.length === 0 && <div style={{ color:'var(--ink-3)', fontSize:12 }}>No specimens of this rarity.</div>}
           </div>
         </div>
       </div>

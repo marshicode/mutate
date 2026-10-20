@@ -1,5 +1,5 @@
 import { useRef, useCallback, type PointerEvent } from 'react';
-import { cardArtJSX } from '../data/cards';
+import { CARDS, cardArtJSX } from '../data/cards';
 import type { CardDef } from '../data/cards';
 
 export function Card({ card, size = 'md', className = '', holo = false, dim = false }: {
@@ -32,7 +32,7 @@ export function Card({ card, size = 'md', className = '', holo = false, dim = fa
     el.style.setProperty('--gy', '50%');
   }, []);
 
-  const num = String(CARDS_ORDER.indexOf(card.id) + 1).padStart(3, '0');
+  const num = String(CARDS.findIndex(c => c.id === card.id) + 1).padStart(3, '0');
 
   return (
     <div
@@ -56,14 +56,13 @@ export function Card({ card, size = 'md', className = '', holo = false, dim = fa
             <span className="rarity-text">{card.rarity}</span>
           </div>
           <div className="card__art">
-            <svg viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="60 20 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
               {cardArtJSX(card.artKey)}
             </svg>
             <div className="card__scan" />
           </div>
           <div className="card__meta">
             <h3 className="card__name">{card.name}</h3>
-            <p className="card__epithet">{card.epithet}</p>
             <dl className="card__stats">
               <div>
                 <dt>POTENCY</dt>
@@ -73,15 +72,11 @@ export function Card({ card, size = 'md', className = '', holo = false, dim = fa
                 <dt>STABILITY</dt>
                 <dd>{card.stability}%</dd>
               </div>
-              <div>
-                <dt>STRAIN</dt>
-                <dd>{card.strain}</dd>
-              </div>
             </dl>
           </div>
           <div className="card__foot">
-            <span>MUTATE</span>
-            <span>SPECIMEN {num}</span>
+            <span>{card.strain}</span>
+            <span>{num}</span>
           </div>
           <div className="card__band bottom" />
         </div>
@@ -90,25 +85,41 @@ export function Card({ card, size = 'md', className = '', holo = false, dim = fa
   );
 }
 
-const CARDS_ORDER = [
-  'sporeling','cinder-mite','brine-wisp','molt-husk','gritling','pale-midge',
-  'chorus-moth','veinwalker','ferro-bloom','static-eel','hollow-saint',
-  'glass-oracle','marrow-choir','neon-larva','dusk-ram',
-  'aureate-host','pale-engine','vesper-crown',
-  'ouroboros-9','last-cell',
-];
+export function CardMini({ card, count }: { card: CardDef; count?: number }) {
+  return (
+    <div className="mini" data-rarity={card.rarity}>
+      <div className="mini__art">
+        <svg viewBox="60 20 200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          {cardArtJSX(card.artKey)}
+        </svg>
+        {count !== undefined && count > 1 && <span className="mini__count">×{count}</span>}
+      </div>
+      <div className="mini__name">{card.name}</div>
+    </div>
+  );
+}
+
+export function CardBackFace() {
+  return (
+    <div className="card-back">
+      <div className="card-back__ring" />
+      <div className="card-back__ring inner" />
+      <svg className="card-back__sigil" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M20 48V22l12-8 12 8v26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M32 14v26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity=".5" />
+      </svg>
+      <span className="card-back__mark">MUTATE</span>
+      <span className="card-back__sub">SPECIMEN</span>
+    </div>
+  );
+}
 
 export function CardBack({ className = '' }: { className?: string }) {
   return (
     <div className={`card-wrap ${className}`}>
       <div className="card" data-rarity="common">
-        <div className="card__stage" style={{ display:'grid', placeItems:'center' }}>
-          <svg width="80" height="80" viewBox="0 0 64 64" fill="none" opacity="0.12">
-            <rect fill="#07080a" width="64" height="64" rx="14"/>
-            <path d="M20 48V22l12-8 12 8v26" stroke="#c9f75a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M32 14v26" stroke="#c9f75a" strokeWidth="4" strokeLinecap="round" opacity=".45"/>
-          </svg>
-          <div style={{ position:'absolute', inset:0, background:'repeating-conic-gradient(rgba(255,255,255,.03) 0% 5%, transparent 5% 10%)' }} />
+        <div className="card__stage">
+          <CardBackFace />
         </div>
       </div>
     </div>

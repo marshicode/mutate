@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppState } from '../store';
-import { Card } from './Card';
+import { Card, CardBackFace } from './Card';
 
 export function FusionStage() {
   const { state, dispatch } = useAppState();
@@ -51,12 +51,8 @@ function CardBackMini() {
   return (
     <div className="card-wrap">
       <div className="card" data-rarity="common" style={{ aspectRatio:'5/7.2' }}>
-        <div className="card__stage" style={{ display:'grid', placeItems:'center' }}>
-          <svg width="40" height="40" viewBox="0 0 64 64" fill="none" opacity="0.12">
-            <rect fill="#07080a" width="64" height="64" rx="14"/>
-            <path d="M20 48V22l12-8 12 8v26" stroke="#c9f75a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <div style={{ position:'absolute', inset:0, background:'repeating-conic-gradient(rgba(255,255,255,.03) 0% 5%, transparent 5% 10%)' }} />
+        <div className="card__stage">
+          <CardBackFace />
         </div>
       </div>
     </div>
