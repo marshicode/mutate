@@ -45,15 +45,15 @@ export function createDefaultState(): GameState {
 function seedInventory(): OwnedCard[] {
   // seed a starter collection so the binder is never empty
   const seedIds: { cardId: string; source: string }[] = [
-    { cardId: 'sporeling', source: 'starter' },
-    { cardId: 'cinder-mite', source: 'starter' },
-    { cardId: 'brine-wisp', source: 'starter' },
-    { cardId: 'chorus-moth', source: 'starter' },
-    { cardId: 'veinwalker', source: 'starter' },
-    { cardId: 'glass-oracle', source: 'starter' },
-    { cardId: 'aureate-host', source: 'starter' },
-    { cardId: 'sporeling', source: 'starter' },
-    { cardId: 'cinder-mite', source: 'starter' },
+    { cardId: 'troll', source: 'starter' },
+    { cardId: 'andy', source: 'starter' },
+    { cardId: 'slerf', source: 'starter' },
+    { cardId: 'popcat', source: 'starter' },
+    { cardId: 'wojak', source: 'starter' },
+    { cardId: 'trump', source: 'starter' },
+    { cardId: 'doge', source: 'starter' },
+    { cardId: 'troll', source: 'starter' },
+    { cardId: 'andy', source: 'starter' },
   ];
   return seedIds.map((s, i) => ({
     uid: `s${i}`,

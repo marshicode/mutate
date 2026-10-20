@@ -13,27 +13,42 @@ create table public.card_catalog (
   art_key text not null
 );
 
+-- COMMON (Tier 4)
 insert into public.card_catalog (id, name, rarity, strain, potency, stability, flavor, art_key) values
-('sporeling',    'Sporeling',    'common',    'FUNGAL',    14, 55, 'A cloud of microscopic hunger.', 'sporeling'),
-('cinder-mite',  'Cinder Mite',  'common',    'MINERAL',   12, 42, 'Smolders for decades in silence.', 'cinder-mite'),
-('brine-wisp',   'Brine Wisp',   'common',    'FLUID',     13, 48, 'Condensed brine with a will.', 'brine-wisp'),
-('molt-husk',    'Molt Husk',    'common',    'ORGANIC',   15, 38, 'Empty, yet it twitches.', 'molt-husk'),
-('gritling',     'Gritling',     'common',    'MINERAL',   11, 60, 'Harder than intent, softer than stone.', 'gritling'),
-('pale-midge',   'Pale Midge',   'common',    'NEURAL',    16, 33, 'A swarm of one mind.', 'pale-midge'),
-('chorus-moth',  'Chorus Moth',  'rare',      'NEURAL',    24, 58, 'Resonates with nearby neurons.', 'chorus-moth'),
-('veinwalker',   'Veinwalker',   'rare',      'ORGANIC',   26, 52, 'Capillaries rearrange to guide it.', 'veinwalker'),
-('ferro-bloom',  'Ferro Bloom',  'rare',      'MINERAL',   23, 64, 'Magnetic petals orient north.', 'ferro-bloom'),
-('static-eel',   'Static Eel',   'rare',      'KINETIC',   27, 45, 'Stores charge between heartbeats.', 'static-eel'),
-('hollow-saint', 'Hollow Saint', 'rare',      'SPECTRAL',  25, 50, 'Its halo is a scar.', 'hollow-saint'),
-('glass-oracle', 'Glass Oracle', 'epic',      'SPECTRAL',  36, 71, 'Every angle is a prophecy.', 'glass-oracle'),
-('marrow-choir', 'Marrow Choir', 'epic',      'ORGANIC',   38, 56, 'A cage of calcium and hymn.', 'marrow-choir'),
-('neon-larva',   'Neon Larva',   'epic',      'KINETIC',   40, 48, 'Bioluminescence as appetite.', 'neon-larva'),
-('dusk-ram',     'Dusk Ram',     'epic',      'MINERAL',   35, 62, 'Charges when the light leaves.', 'dusk-ram'),
-('aureate-host', 'Aureate Host', 'legendary', 'ORGANIC',   54, 80, 'A parasite draped in wealth.', 'aureate-host'),
-('pale-engine',  'The Pale Engine', 'legendary','KINETIC', 58, 74, 'Perpetual motion of regret.', 'pale-engine'),
-('vesper-crown', 'Vesper Crown', 'legendary', 'SPECTRAL',  56, 77, 'Heavy with borrowed twilight.', 'vesper-crown'),
-('ouroboros-9',  'Ouroboros-9',  'mythic',    'RECURSIVE', 86, 91, 'Its recursion has a limit. Nobody has found it.', 'ouroboros-9'),
-('last-cell',    'The Last Cell', 'mythic',   'ORGANIC',   92, 88, 'The final division before silence.', 'last-cell');
+('troll',   'TROLL',   'common', 'HUMANOID', 12, 48, 'Ancient meme energy. Still trolling after all these years.', 'troll'),
+('andy',    'ANDY',    'common', 'HUMANOID', 14, 42, 'Matt Furie\'s forgotten son. Lives in PEPE\'s shadow.', 'andy'),
+('slerf',   'SLERF',   'common', 'SLOTH',    11, 35, 'Burned $10M by mistake. Became a legend for 48 hours.', 'slerf'),
+('hpos10i', 'HPOS10I', 'common', 'ABSTRACT', 15, 28, 'Harry Potter. Obama. Sonic. 10. Inu. Yes, all of them.', 'hpos10i'),
+('spx6900', 'SPX6900', 'common', 'ABSTRACT', 13, 55, 'Financial meme culture distilled into a single number.', 'spx6900'),
+('michi',   'MICHI',   'common', 'FELINE',   16, 38, 'Solana\'s cutest niche obsession.', 'michi');
+
+-- RARE (Tier 3)
+insert into public.card_catalog (id, name, rarity, strain, potency, stability, flavor, art_key) values
+('popcat', 'POPCAT', 'rare', 'FELINE',   26, 62, 'One photo. Two states. Infinite memes. Solana\'s cat.', 'popcat'),
+('mog',    'MOG',    'rare', 'HUMANOID', 24, 58, 'You either mog or get mogged. There is no third option.', 'mog'),
+('wojak',  'WOJAK',  'rare', 'HUMANOID', 27, 45, 'Every trader\'s spirit animal. He knows your portfolio.', 'wojak'),
+('turbo',  'TURBO',  'rare', 'ABSTRACT', 25, 52, 'The first AI-created meme coin. GPT-4 wrote the contract.', 'turbo'),
+('neiro',  'NEIRO',  'rare', 'CANINE',   23, 60, 'New DOGE. Same dog. Different era.', 'neiro'),
+('ponke',  'PONKE',  'rare', 'PRIMATE',  28, 40, 'Solana\'s gambling monkey. Degenerate energy incarnate.', 'ponke');
+
+-- EPIC (Tier 2)
+insert into public.card_catalog (id, name, rarity, strain, potency, stability, flavor, art_key) values
+('trump', 'TRUMP', 'epic', 'HUMANOID', 40, 48, 'Presidential meme coin. $40B in 48 hours. Politics as asset.', 'trump'),
+('wif',   'WIF',   'epic', 'CANINE',   38, 65, 'Solana\'s #1. A pink hat. A dream. Nothing else needed.', 'wif'),
+('floki', 'FLOKI', 'epic', 'CANINE',   36, 58, 'Elon\'s actual dog. Built an empire of billboards.', 'floki'),
+('bonk',  'BONK',  'epic', 'CANINE',   35, 70, 'Solana\'s OG meme. The bat is a weapon and a promise.', 'bonk'),
+('brett', 'BRETT', 'epic', 'HUMANOID', 37, 55, 'Matt Furie\'s blue frog-adjacent legend. Base mascot.', 'brett');
+
+-- LEGENDARY (Tier 1)
+insert into public.card_catalog (id, name, rarity, strain, potency, stability, flavor, art_key) values
+('doge', 'DOGE', 'legendary', 'CANINE',   58, 85, 'The original meme coin. A Shiba Inu that became a global currency.', 'doge'),
+('shib', 'SHIB', 'legendary', 'CANINE',   56, 78, 'The DOGE killer that built Shibarium. Millions of holders.', 'shib'),
+('pepe', 'PEPE', 'legendary', 'FROG',     54, 82, 'The most viral meme coin launch in history. Pure internet culture.', 'pepe');
+
+-- MYTHIC (Tier Apex)
+insert into public.card_catalog (id, name, rarity, strain, potency, stability, flavor, art_key) values
+('satoshi', 'SATOSHI', 'mythic', 'ABSTRACT',  99, 99, 'The original meme. The creator who vanished. Worth a million BTC.', 'satoshi'),
+('vitalik', 'VITALIK', 'mythic', 'HUMANOID',  92, 95, 'Built Ethereum at 19. Wears unicorn shirts. Destroyed his own tokens.', 'vitalik');
 
 -- Pack config (server authority for odds)
 create table public.pack_config (
