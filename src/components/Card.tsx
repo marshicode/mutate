@@ -56,9 +56,13 @@ export function Card({ card, size = 'md', className = '', holo = false, dim = fa
             <span className="rarity-text">{card.rarity}</span>
           </div>
           <div className="card__art">
-            <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              {cardArtJSX(card.artKey)}
-            </svg>
+            {card.artUrl ? (
+              <img className="card__img" src={card.artUrl} alt="" loading="lazy" />
+            ) : (
+              <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                {cardArtJSX(card.artKey)}
+              </svg>
+            )}
             <div className="card__scan" />
           </div>
           <div className="card__meta">
@@ -89,9 +93,13 @@ export function CardMini({ card, count }: { card: CardDef; count?: number }) {
   return (
     <div className="mini" data-rarity={card.rarity}>
       <div className="mini__art">
-        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          {cardArtJSX(card.artKey)}
-        </svg>
+        {card.artUrl ? (
+          <img className="card__img" src={card.artUrl} alt="" loading="lazy" />
+        ) : (
+          <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            {cardArtJSX(card.artKey)}
+          </svg>
+        )}
         {count !== undefined && count > 1 && <span className="mini__count">×{count}</span>}
       </div>
       <div className="mini__name">{card.name}</div>

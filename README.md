@@ -9,11 +9,25 @@ A dark-themed specimen card collection game. Collect, splice, ascend.
 - Supabase (optional) for auth + cloud persistence
 
 ## Game systems
-- **20 specimen designs** across 5 rarities, each with unique SVG art
+- **20 crypto meme characters** across 5 rarities, each with an original
+  flat-vector portrait (DOGE, SHIB, PEPE, TRUMP, WIF, FLOKI, BONK, BRETT,
+  POPCAT, MOG, WOJAK, TURBO, NEIRO, PONKE, TROLL, ANDY, SLERF, MICHI,
+  SATOSHI, VITALIK)
 - **3 pack types** with floor rarities and published odds
 - **Pity**: every 10th Spore Pack without Epic+ guarantees an Epic
 - **Fusion**: 3 cards of the same rarity → 1 guaranteed card of the next rarity
 - **Economy**: Credits buy packs; duplicates grant Residue; Residue can also buy packs
+
+## Using real artwork
+The shipped art is original vector illustration. To use official images instead,
+drop files into `public/art/` and add `artUrl` to that card in
+`src/data/cards.tsx`:
+
+```ts
+{ id: 'doge', name: 'DOGE', /* … */ artUrl: '/art/doge.png' }
+```
+
+Cards render the image with `object-fit: cover`; no other changes needed.
 
 ## Run locally
 ```bash

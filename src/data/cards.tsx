@@ -13,6 +13,8 @@ export interface CardDef {
   stability: number;
   flavor: string;
   artKey: string;
+  /** Optional real artwork. Drop a file in public/art and set e.g. "/art/doge.png". */
+  artUrl?: string;
 }
 
 /*
