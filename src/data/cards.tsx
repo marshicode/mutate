@@ -110,28 +110,12 @@ export function cardArtJSX(key: string): ReactNode {
 }
 
 /* ---------- shared art bits ---------- */
-const INK = 'currentColor';
-
-function Aura({ id, c }: { id: string; c: string }) {
-  return (
-    <defs>
-      <radialGradient id={id} cx="50%" cy="46%" r="62%">
-        <stop offset="0%" stopColor={c} stopOpacity="0.38" />
-        <stop offset="100%" stopColor={c} stopOpacity="0" />
-      </radialGradient>
-    </defs>
-  );
-}
-
-function Eyes({ lx = 138, rx = 182, y = 100, r = 9, pupil = 4 }: { lx?: number; rx?: number; y?: number; r?: number; pupil?: number }) {
+function Badge({ bg, children }: { bg: string; children: ReactNode }) {
   return (
     <>
-      <circle cx={lx} cy={y} r={r} fill={INK} opacity={0.14} />
-      <circle cx={lx} cy={y} r={r} fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      <circle cx={lx} cy={y} r={pupil} fill={INK} opacity={0.9} />
-      <circle cx={rx} cy={y} r={r} fill={INK} opacity={0.14} />
-      <circle cx={rx} cy={y} r={r} fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      <circle cx={rx} cy={y} r={pupil} fill={INK} opacity={0.9} />
+      <circle cx={100} cy={100} r={99} fill={bg} />
+      <circle cx={100} cy={100} r={99} fill="none" stroke="rgba(0,0,0,.22)" strokeWidth={2} />
+      {children}
     </>
   );
 }
@@ -139,491 +123,503 @@ function Eyes({ lx = 138, rx = 182, y = 100, r = 9, pupil = 4 }: { lx?: number; 
 /* ---------- COMMON ---------- */
 
 function Troll() {
-  const g = 'g-troll';
   return (
-    <>
-      <Aura id={g} c="#9b7" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      {/* head */}
-      <ellipse cx={160} cy={112} rx={54} ry={56} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={112} rx={54} ry={56} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* messy hair */}
-      <path d="M 122 70 Q 118 44 132 54 Q 136 32 148 48 Q 156 28 166 48 Q 176 34 180 52 Q 196 42 194 72" fill={INK} opacity={0.45} />
-      <Eyes y={102} r={10} pupil={4} />
-      {/* iconic grin */}
-      <path d="M 120 128 Q 160 168 200 128" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      <path d="M 128 132 Q 160 158 192 132" fill="none" stroke={INK} strokeWidth={2} opacity={0.6} />
-      {/* teeth */}
-      <path d="M 136 137 L 136 146 M 148 143 L 148 152 M 160 145 L 160 154 M 172 143 L 172 152 M 184 137 L 184 146" stroke={INK} strokeWidth={2} opacity={0.55} />
-    </>
+    <Badge bg="#4E5B33">
+      {/* hair */}
+      <path d="M52 74 Q46 40 68 48 Q74 22 92 42 Q102 18 114 42 Q132 24 138 50 Q158 42 150 76 Z" fill="#3A2E22" />
+      {/* face */}
+      <ellipse cx={100} cy={106} rx={54} ry={54} fill="#E9E3D2" />
+      <ellipse cx={100} cy={150} rx={44} ry={16} fill="#CFC7B2" />
+      {/* eyes */}
+      <ellipse cx={78} cy={96} rx={9} ry={11} fill="#2B2117" />
+      <ellipse cx={122} cy={96} rx={9} ry={11} fill="#2B2117" />
+      <circle cx={81} cy={92} r={3} fill="#fff" />
+      <circle cx={125} cy={92} r={3} fill="#fff" />
+      {/* brows */}
+      <path d="M66 82 Q78 76 90 82" stroke="#8A7A5A" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M110 82 Q122 76 134 82" stroke="#8A7A5A" strokeWidth={5} fill="none" strokeLinecap="round" />
+      {/* grin */}
+      <path d="M46 122 Q100 176 154 122 Q100 148 46 122 Z" fill="#B23A3A" />
+      <path d="M46 122 Q100 176 154 122" stroke="#7A1F1F" strokeWidth={4} fill="none" />
+      <path d="M60 127 L60 140 M78 138 L78 152 M100 143 L100 158 M122 138 L122 152 M140 127 L140 140" stroke="#F2E6D0" strokeWidth={4} />
+      <path d="M46 122 Q100 148 154 122" stroke="#F2E6D0" strokeWidth={5} fill="none" />
+    </Badge>
   );
 }
 
 function Andy() {
-  const g = 'g-andy';
   return (
-    <>
-      <Aura id={g} c="#68c" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      <ellipse cx={160} cy={108} rx={50} ry={52} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={108} rx={50} ry={52} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      <Eyes y={98} r={11} pupil={5} />
-      {/* innocent smile */}
-      <path d="M 134 128 Q 160 148 186 128" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* body */}
-      <path d="M 116 156 Q 160 196 204 156" fill={INK} opacity={0.10} />
-      <path d="M 116 156 Q 160 196 204 156" fill="none" stroke={INK} strokeWidth={2.4} opacity={0.6} />
-    </>
+    <Badge bg="#2F4C7A">
+      <ellipse cx={100} cy={108} rx={54} ry={56} fill="#7FB0D9" />
+      <ellipse cx={100} cy={152} rx={44} ry={16} fill="#5F92C4" />
+      {/* hair tuft */}
+      <path d="M84 56 Q88 34 100 44 Q112 28 116 54 Q126 40 124 62" fill="#2A4A6A" />
+      {/* eyes */}
+      <circle cx={78} cy={100} r={16} fill="#F2F6FA" />
+      <circle cx={122} cy={100} r={16} fill="#F2F6FA" />
+      <circle cx={78} cy={102} r={7} fill="#1E2A38" />
+      <circle cx={122} cy={102} r={7} fill="#1E2A38" />
+      <circle cx={80} cy={99} r={2.5} fill="#fff" />
+      <circle cx={124} cy={99} r={2.5} fill="#fff" />
+      {/* smile */}
+      <path d="M74 132 Q100 152 126 132" stroke="#1E2A38" strokeWidth={5} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Slerf() {
-  const g = 'g-slerf';
   return (
-    <>
-      <Aura id={g} c="#a86" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      <ellipse cx={160} cy={112} rx={50} ry={46} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={112} rx={50} ry={46} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
+    <Badge bg="#6B4A2F">
+      {/* branch */}
+      <rect x={16} y={162} width={168} height={16} rx={8} fill="#4A3320" />
+      {/* head */}
+      <ellipse cx={100} cy={106} rx={54} ry={50} fill="#C79A6B" />
       {/* eye patches */}
-      <ellipse cx={140} cy={104} rx={16} ry={13} fill={INK} opacity={0.18} />
-      <ellipse cx={180} cy={104} rx={16} ry={13} fill={INK} opacity={0.18} />
+      <ellipse cx={74} cy={98} rx={20} ry={17} fill="#8A5F3C" />
+      <ellipse cx={126} cy={98} rx={20} ry={17} fill="#8A5F3C" />
       {/* sleepy eyes */}
-      <path d="M 130 104 Q 140 110 150 104" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      <path d="M 170 104 Q 180 110 190 104" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* smile */}
-      <path d="M 146 130 Q 160 138 174 130" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.7} />
-      {/* branch + claws */}
-      <line x1={92} y1={176} x2={228} y2={176} stroke={INK} strokeWidth={4} opacity={0.45} />
-      <path d="M 128 150 Q 124 168 130 176 M 192 150 Q 196 168 190 176" fill="none" stroke={INK} strokeWidth={3} opacity={0.65} />
-    </>
+      <path d="M62 100 Q74 108 86 100" stroke="#3A2618" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M114 100 Q126 108 138 100" stroke="#3A2618" strokeWidth={5} fill="none" strokeLinecap="round" />
+      {/* nose + smile */}
+      <ellipse cx={100} cy={122} rx={9} ry={6} fill="#3A2618" />
+      <path d="M100 128 L100 136 M100 136 Q90 142 84 136 M100 136 Q110 142 116 136" stroke="#3A2618" strokeWidth={4} fill="none" strokeLinecap="round" />
+      {/* claws */}
+      <path d="M66 150 Q62 164 68 170 M134 150 Q138 164 132 170" stroke="#8A5F3C" strokeWidth={7} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Michi() {
-  const g = 'g-michi';
   return (
-    <>
-      <Aura id={g} c="#e8a" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
+    <Badge bg="#C25A7A">
       {/* ears */}
-      <path d="M 122 96 L 112 58 L 148 82 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 198 96 L 208 58 L 172 82 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
+      <path d="M52 82 L44 40 L86 62 Z" fill="#F2D9B5" />
+      <path d="M148 82 L156 40 L114 62 Z" fill="#F2D9B5" />
+      <path d="M58 78 L52 50 L80 64 Z" fill="#E8A8B8" />
+      <path d="M142 78 L148 50 L120 64 Z" fill="#E8A8B8" />
       {/* head */}
-      <ellipse cx={160} cy={112} rx={48} ry={44} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={112} rx={48} ry={44} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      <Eyes y={106} r={10} pupil={5} />
-      {/* nose + mouth */}
-      <path d="M 154 122 L 160 128 L 166 122 Z" fill={INK} opacity={0.8} />
-      <path d="M 150 132 Q 160 138 170 132" fill="none" stroke={INK} strokeWidth={2.2} opacity={0.65} />
+      <ellipse cx={100} cy={110} rx={54} ry={50} fill="#F2D9B5" />
+      <ellipse cx={100} cy={152} rx={40} ry={14} fill="#D9B98A" />
+      {/* closed happy eyes */}
+      <path d="M64 106 Q78 92 92 106" stroke="#3A2618" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M108 106 Q122 92 136 106" stroke="#3A2618" strokeWidth={5} fill="none" strokeLinecap="round" />
+      {/* nose */}
+      <path d="M94 122 L100 128 L106 122 Z" fill="#D97A8A" />
+      <path d="M100 128 L100 134 M100 134 Q94 140 88 136 M100 134 Q106 140 112 136" stroke="#3A2618" strokeWidth={3.5} fill="none" strokeLinecap="round" />
       {/* whiskers */}
-      <path d="M 112 116 L 130 120 M 112 128 L 130 126 M 208 116 L 190 120 M 208 128 L 190 126" stroke={INK} strokeWidth={2} opacity={0.45} />
-    </>
+      <path d="M40 118 L64 122 M40 132 L64 130 M160 118 L136 122 M160 132 L136 130" stroke="#3A2618" strokeWidth={3} opacity={0.5} />
+    </Badge>
   );
 }
 
 /* ---------- RARE ---------- */
 
 function Popcat() {
-  const g = 'g-popcat';
   return (
-    <>
-      <Aura id={g} c="#ea8" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      <path d="M 124 92 L 114 54 L 150 78 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 196 92 L 206 54 L 170 78 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <ellipse cx={160} cy={106} rx={48} ry={42} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={106} rx={48} ry={42} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* wide eyes */}
-      <Eyes y={96} r={11} pupil={5} />
-      {/* the POP mouth */}
-      <ellipse cx={160} cy={136} rx={22} ry={17} fill="#07080a" opacity={0.55} />
-      <ellipse cx={160} cy={136} rx={22} ry={17} fill="none" stroke={INK} strokeWidth={3} opacity={0.9} />
+    <Badge bg="#2F6B5A">
+      {/* ears */}
+      <path d="M50 84 L40 38 L86 62 Z" fill="#F5E6CC" />
+      <path d="M150 84 L160 38 L114 62 Z" fill="#F5E6CC" />
+      <path d="M56 80 L50 50 L80 66 Z" fill="#E8B9A0" />
+      <path d="M144 80 L150 50 L120 66 Z" fill="#E8B9A0" />
+      {/* head */}
+      <ellipse cx={100} cy={104} rx={54} ry={50} fill="#F5E6CC" />
+      {/* eyes */}
+      <circle cx={76} cy={92} r={16} fill="#1A1A1A" />
+      <circle cx={124} cy={92} r={16} fill="#1A1A1A" />
+      <circle cx={80} cy={87} r={5} fill="#fff" />
+      <circle cx={128} cy={87} r={5} fill="#fff" />
+      {/* open mouth */}
+      <ellipse cx={100} cy={136} rx={30} ry={26} fill="#1A1A1A" />
+      <ellipse cx={100} cy={148} rx={16} ry={10} fill="#E87A8A" />
+      <path d="M70 136 Q100 140 130 136" stroke="#F5E6CC" strokeWidth={3} fill="none" opacity={0.4} />
       {/* whiskers */}
-      <path d="M 108 116 L 130 120 M 108 128 L 130 126 M 212 116 L 190 120 M 212 128 L 190 126" stroke={INK} strokeWidth={2} opacity={0.45} />
-    </>
+      <path d="M34 112 L60 118 M34 128 L60 126 M166 112 L140 118 M166 128 L140 126" stroke="#1A1A1A" strokeWidth={3} opacity={0.45} />
+    </Badge>
   );
 }
 
 function Mog() {
-  const g = 'g-mog';
   return (
-    <>
-      <Aura id={g} c="#8ec" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      {/* strong jaw */}
-      <path d="M 118 96 Q 120 156 160 164 Q 200 156 202 96 Q 160 76 118 96 Z" fill={INK} opacity={0.10} />
-      <path d="M 118 96 Q 120 156 160 164 Q 200 156 202 96 Q 160 76 118 96 Z" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
+    <Badge bg="#2F5F5A">
+      {/* ears */}
+      <path d="M54 80 L48 44 L84 64 Z" fill="#B08A4A" />
+      <path d="M146 80 L152 44 L116 64 Z" fill="#B08A4A" />
+      {/* face */}
+      <ellipse cx={100} cy={108} rx={54} ry={52} fill="#C9A46A" />
+      <ellipse cx={100} cy={152} rx={42} ry={14} fill="#A8834A" />
       {/* thick brows */}
-      <path d="M 128 88 L 152 82 M 168 82 L 192 88" stroke={INK} strokeWidth={5} strokeLinecap="round" opacity={0.85} />
+      <path d="M60 88 L90 80" stroke="#2B2117" strokeWidth={8} strokeLinecap="round" />
+      <path d="M110 80 L140 88" stroke="#2B2117" strokeWidth={8} strokeLinecap="round" />
       {/* narrow eyes */}
-      <path d="M 132 100 Q 142 94 152 100 M 168 100 Q 178 94 188 100" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* smirk */}
-      <path d="M 136 132 Q 160 146 184 126" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      {/* hair */}
-      <path d="M 122 88 Q 160 62 198 88" fill={INK} opacity={0.28} />
-    </>
+      <path d="M66 102 Q78 94 90 102" stroke="#2B2117" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M110 102 Q122 94 134 102" stroke="#2B2117" strokeWidth={5} fill="none" strokeLinecap="round" />
+      {/* nose + smirk */}
+      <ellipse cx={100} cy={124} rx={8} ry={6} fill="#2B2117" />
+      <path d="M100 130 L100 136 M100 136 Q112 146 126 136" stroke="#2B2117" strokeWidth={4.5} fill="none" strokeLinecap="round" />
+      {/* gold chain */}
+      <path d="M64 156 Q100 184 136 156" stroke="#E8C15A" strokeWidth={7} fill="none" strokeLinecap="round" />
+      <circle cx={100} cy={176} r={9} fill="#E8C15A" stroke="#A87C1E" strokeWidth={3} />
+    </Badge>
   );
 }
 
 function Wojak() {
-  const g = 'g-wojak';
   return (
-    <>
-      <Aura id={g} c="#c98" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      {/* bald head */}
-      <ellipse cx={160} cy={106} rx={46} ry={52} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={106} rx={46} ry={52} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
+    <Badge bg="#47525E">
+      {/* head */}
+      <ellipse cx={100} cy={102} rx={50} ry={56} fill="#D9C3A8" />
+      <ellipse cx={100} cy={146} rx={40} ry={16} fill="#BFA88C" />
       {/* hollow eyes */}
-      <ellipse cx={142} cy={100} rx={12} ry={7} fill="#07080a" opacity={0.5} />
-      <ellipse cx={178} cy={100} rx={12} ry={7} fill="#07080a" opacity={0.5} />
-      <ellipse cx={142} cy={100} rx={12} ry={7} fill="none" stroke={INK} strokeWidth={2.6} opacity={0.85} />
-      <ellipse cx={178} cy={100} rx={12} ry={7} fill="none" stroke={INK} strokeWidth={2.6} opacity={0.85} />
+      <ellipse cx={78} cy={96} rx={15} ry={10} fill="#2A2A2A" />
+      <ellipse cx={122} cy={96} rx={15} ry={10} fill="#2A2A2A" />
+      <ellipse cx={78} cy={96} rx={15} ry={10} fill="none" stroke="#8A7458" strokeWidth={3} />
+      <ellipse cx={122} cy={96} rx={15} ry={10} fill="none" stroke="#8A7458" strokeWidth={3} />
       {/* sad mouth */}
-      <path d="M 142 134 Q 160 124 178 134" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
+      <path d="M76 134 Q100 120 124 134" stroke="#5A4632" strokeWidth={5} fill="none" strokeLinecap="round" />
       {/* stubble */}
-      <path d="M 132 142 L 132 150 M 142 146 L 142 154 M 152 148 L 152 156 M 160 149 L 160 157 M 168 148 L 168 156 M 178 146 L 178 154 M 188 142 L 188 150" stroke={INK} strokeWidth={2} opacity={0.35} />
-    </>
+      <path d="M62 140 L62 152 M76 148 L76 160 M92 152 L92 164 M108 152 L108 164 M124 148 L124 160 M138 140 L138 152" stroke="#8A7458" strokeWidth={3} opacity={0.6} />
+    </Badge>
   );
 }
 
 function Turbo() {
-  const g = 'g-turbo';
   return (
-    <>
-      <Aura id={g} c="#8ce" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      {/* frog head */}
-      <ellipse cx={160} cy={116} rx={52} ry={44} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={116} rx={52} ry={44} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* eye domes */}
-      <circle cx={140} cy={88} r={17} fill={INK} opacity={0.14} stroke={INK} strokeWidth={3} />
-      <circle cx={180} cy={88} r={17} fill={INK} opacity={0.14} stroke={INK} strokeWidth={3} />
-      <circle cx={140} cy={88} r={6} fill={INK} opacity={0.9} />
-      <circle cx={180} cy={88} r={6} fill={INK} opacity={0.9} />
-      {/* racing stripes */}
-      <path d="M 160 72 L 160 156" stroke={INK} strokeWidth={6} opacity={0.35} />
-      <path d="M 146 74 L 146 154 M 174 74 L 174 154" stroke={INK} strokeWidth={2.5} opacity={0.22} />
+    <Badge bg="#2F7A8A">
+      {/* toad head */}
+      <ellipse cx={100} cy={116} rx={58} ry={50} fill="#7FB84A" />
+      <ellipse cx={100} cy={156} rx={44} ry={14} fill="#5F9833" />
+      {/* stripe */}
+      <path d="M100 70 L100 160" stroke="#5F9833" strokeWidth={10} />
+      {/* goggles */}
+      <circle cx={70} cy={88} r={24} fill="#D9E8F0" stroke="#2A3A3A" strokeWidth={5} />
+      <circle cx={130} cy={88} r={24} fill="#D9E8F0" stroke="#2A3A3A" strokeWidth={5} />
+      <path d="M46 88 L24 82 M154 88 L176 82" stroke="#2A3A3A" strokeWidth={8} strokeLinecap="round" />
+      <circle cx={70} cy={90} r={8} fill="#1E2A38" />
+      <circle cx={130} cy={90} r={8} fill="#1E2A38" />
+      <circle cx={73} cy={86} r={3} fill="#fff" />
+      <circle cx={133} cy={86} r={3} fill="#fff" />
       {/* grin */}
-      <path d="M 136 130 Q 160 146 184 130" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* speed lines */}
-      <path d="M 96 140 L 118 140 M 92 152 L 114 152 M 202 140 L 224 140 M 206 152 L 228 152" stroke={INK} strokeWidth={2.5} opacity={0.4} />
-    </>
+      <path d="M64 132 Q100 156 136 132" stroke="#2A4A1A" strokeWidth={5} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Neiro() {
-  const g = 'g-neiro';
   return (
-    <>
-      <Aura id={g} c="#a8c" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
-      {/* shiba ears */}
-      <path d="M 122 90 L 112 50 L 150 76 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 198 90 L 208 50 L 170 76 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
+    <Badge bg="#5A4A8A">
+      {/* ears */}
+      <path d="M50 80 L40 32 L86 60 Z" fill="#C08A2F" />
+      <path d="M150 80 L160 32 L114 60 Z" fill="#C08A2F" />
+      <path d="M56 76 L50 46 L80 62 Z" fill="#E0A94A" />
+      <path d="M144 76 L150 46 L120 62 Z" fill="#E0A94A" />
       {/* head */}
-      <ellipse cx={160} cy={110} rx={48} ry={44} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={110} rx={48} ry={44} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      <Eyes y={102} r={9} pupil={4} />
-      {/* snout + smile */}
-      <ellipse cx={160} cy={128} rx={18} ry={12} fill={INK} opacity={0.12} />
-      <path d="M 146 124 Q 160 138 174 124" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.75} />
-      <circle cx={160} cy={120} r={5} fill={INK} opacity={0.85} />
-    </>
+      <ellipse cx={100} cy={106} rx={54} ry={50} fill="#E0A94A" />
+      {/* muzzle */}
+      <ellipse cx={100} cy={132} rx={32} ry={24} fill="#F7E2BC" />
+      {/* eyes */}
+      <ellipse cx={78} cy={98} rx={8} ry={10} fill="#2B2117" />
+      <ellipse cx={122} cy={98} rx={8} ry={10} fill="#2B2117" />
+      <circle cx={80} cy={94} r={3} fill="#fff" />
+      <circle cx={124} cy={94} r={3} fill="#fff" />
+      {/* nose + smile */}
+      <ellipse cx={100} cy={124} rx={9} ry={7} fill="#2B2117" />
+      <path d="M100 131 L100 138 M100 138 Q90 146 82 138 M100 138 Q110 146 118 138" stroke="#2B2117" strokeWidth={4} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Ponke() {
-  const g = 'g-ponke';
   return (
-    <>
-      <Aura id={g} c="#ca6" />
-      <circle cx={160} cy={118} r={96} fill={`url(#${g})`} />
+    <Badge bg="#A86A2F">
       {/* ears */}
-      <circle cx={114} cy={110} r={16} fill={INK} opacity={0.14} stroke={INK} strokeWidth={3} />
-      <circle cx={206} cy={110} r={16} fill={INK} opacity={0.14} stroke={INK} strokeWidth={3} />
+      <circle cx={42} cy={108} r={20} fill="#C98A4A" />
+      <circle cx={158} cy={108} r={20} fill="#C98A4A" />
+      <circle cx={42} cy={108} r={11} fill="#A8703C" />
+      <circle cx={158} cy={108} r={11} fill="#A8703C" />
       {/* head */}
-      <ellipse cx={160} cy={108} rx={48} ry={46} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={108} rx={48} ry={46} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      <Eyes y={96} r={13} pupil={5} />
+      <ellipse cx={100} cy={104} rx={52} ry={50} fill="#A8703C" />
       {/* muzzle */}
-      <ellipse cx={160} cy={132} rx={24} ry={18} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={132} rx={24} ry={18} fill="none" stroke={INK} strokeWidth={2.6} opacity={0.7} />
-      <path d="M 146 132 Q 160 140 174 132" fill="none" stroke={INK} strokeWidth={2.4} opacity={0.75} />
-      <ellipse cx={152} cy={124} rx={3} ry={4} fill={INK} opacity={0.6} />
-      <ellipse cx={168} cy={124} rx={3} ry={4} fill={INK} opacity={0.6} />
-    </>
+      <ellipse cx={100} cy={134} rx={36} ry={26} fill="#D9B98A" />
+      {/* eyes */}
+      <circle cx={76} cy={94} r={17} fill="#F2E6D0" />
+      <circle cx={124} cy={94} r={17} fill="#F2E6D0" />
+      <circle cx={76} cy={96} r={7} fill="#1E160E" />
+      <circle cx={124} cy={96} r={7} fill="#1E160E" />
+      {/* nostrils + grin */}
+      <ellipse cx={92} cy={128} rx={4} ry={5} fill="#5A3A1E" />
+      <ellipse cx={108} cy={128} rx={4} ry={5} fill="#5A3A1E" />
+      <path d="M74 140 Q100 158 126 140" stroke="#5A3A1E" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M82 146 L82 154 M100 150 L100 158 M118 146 L118 154" stroke="#F2E6D0" strokeWidth={4} />
+    </Badge>
   );
 }
 
 /* ---------- EPIC ---------- */
 
 function Trump() {
-  const g = 'g-trump';
   return (
-    <>
-      <Aura id={g} c="#ec6" />
-      <circle cx={160} cy={118} r={98} fill={`url(#${g})`} />
-      {/* suit shoulders */}
-      <path d="M 88 196 Q 118 150 160 148 Q 202 150 232 196 Z" fill={INK} opacity={0.14} />
-      <path d="M 88 196 Q 118 150 160 148 Q 202 150 232 196" fill="none" stroke={INK} strokeWidth={3} opacity={0.7} />
+    <Badge bg="#3A4A6A">
+      {/* suit */}
+      <path d="M20 200 Q34 148 76 138 L124 138 Q166 148 180 200 Z" fill="#1E2634" />
+      {/* shirt */}
+      <path d="M86 140 L114 140 L100 182 Z" fill="#E8E8E8" />
       {/* tie */}
-      <path d="M 152 154 L 168 154 L 164 172 L 160 184 L 156 172 Z" fill={INK} opacity={0.6} />
+      <path d="M93 146 L107 146 L104 168 L100 186 L96 168 Z" fill="#C0392B" />
+      <path d="M90 138 L110 138 L107 148 L93 148 Z" fill="#A32B22" />
       {/* face */}
-      <path d="M 122 106 Q 118 72 138 60 Q 160 50 182 60 Q 202 72 198 106 Q 196 136 178 144 Q 160 150 142 144 Q 124 136 122 106 Z" fill={INK} opacity={0.10} />
-      {/* hair — the swoop */}
-      <path d="M 118 100 Q 112 62 142 50 Q 160 42 180 50 Q 210 62 202 100 Q 196 84 186 78 Q 172 88 160 82 Q 146 90 132 82 Q 122 88 118 100 Z" fill={INK} opacity={0.55} />
-      {/* eyes */}
-      <path d="M 134 106 Q 144 100 154 106 M 166 106 Q 176 100 186 106" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* mouth */}
-      <path d="M 144 130 Q 160 138 176 130" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.7} />
-      {/* collar */}
-      <path d="M 138 148 L 152 164 M 182 148 L 168 164" stroke={INK} strokeWidth={2.6} opacity={0.6} />
-    </>
+      <ellipse cx={100} cy={98} rx={40} ry={46} fill="#F0C09A" />
+      {/* hair */}
+      <path d="M52 98 Q42 48 82 34 Q100 24 118 34 Q158 48 148 98 Q142 72 130 66 Q114 80 100 70 Q84 80 70 66 Q58 72 52 98 Z" fill="#E8C15A" />
+      <path d="M56 88 Q58 58 82 44 Q100 34 118 44 Q142 58 144 88 Q140 66 126 58 Q112 70 100 62 Q86 70 74 58 Q60 66 56 88 Z" fill="#D4A93F" />
+      {/* eyes + brows */}
+      <path d="M76 92 Q86 86 96 92" stroke="#B08A4A" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M104 92 Q114 86 124 92" stroke="#B08A4A" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <ellipse cx={85} cy={100} rx={5} ry={4} fill="#2B2117" />
+      <ellipse cx={115} cy={100} rx={5} ry={4} fill="#2B2117" />
+      {/* nose + mouth */}
+      <path d="M100 104 L100 116" stroke="#D9A87A" strokeWidth={4} strokeLinecap="round" />
+      <path d="M88 124 Q100 130 112 124" stroke="#8A5A3A" strokeWidth={4} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Wif() {
-  const g = 'g-wif';
   return (
-    <>
-      <Aura id={g} c="#e8a" />
-      <circle cx={160} cy={118} r={98} fill={`url(#${g})`} />
+    <Badge bg="#C96A7A">
       {/* ears */}
-      <path d="M 124 96 L 112 58 L 150 82 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 196 96 L 208 58 L 170 82 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
+      <path d="M52 86 L44 40 L88 64 Z" fill="#D9C3A0" />
+      <path d="M148 86 L156 40 L112 64 Z" fill="#D9C3A0" />
+      <path d="M58 82 L52 50 L82 66 Z" fill="#F5E8D0" />
+      <path d="M142 82 L148 50 L118 66 Z" fill="#F5E8D0" />
       {/* head */}
-      <ellipse cx={160} cy={118} rx={46} ry={40} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={118} rx={46} ry={40} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* THE HAT */}
-      <path d="M 110 88 Q 160 66 210 88 L 210 76 Q 160 52 110 76 Z" fill={INK} opacity={0.55} />
-      <ellipse cx={160} cy={90} rx={50} ry={12} fill={INK} opacity={0.35} />
-      <ellipse cx={160} cy={90} rx={50} ry={12} fill="none" stroke={INK} strokeWidth={3} opacity={0.9} />
-      <path d="M 120 74 Q 160 58 200 74" fill="none" stroke={INK} strokeWidth={2.4} opacity={0.6} />
+      <ellipse cx={100} cy={112} rx={52} ry={46} fill="#E8D5B5" />
+      {/* hat */}
+      <path d="M44 84 Q100 56 156 84 L156 68 Q100 38 44 68 Z" fill="#E89AA8" />
+      <ellipse cx={100} cy={86} rx={56} ry={13} fill="#D97A8A" />
+      <ellipse cx={100} cy={66} rx={44} ry={20} fill="#E89AA8" />
+      <path d="M62 62 Q100 46 138 62" stroke="#D97A8A" strokeWidth={4} fill="none" opacity={0.7} />
       {/* eyes */}
-      <Eyes y={118} r={8} pupil={4} />
-      {/* snout */}
-      <ellipse cx={160} cy={138} rx={16} ry={11} fill={INK} opacity={0.14} />
-      <path d="M 152 136 Q 160 142 168 136" fill="none" stroke={INK} strokeWidth={2.2} opacity={0.6} />
-    </>
+      <ellipse cx={80} cy={112} rx={8} ry={9} fill="#2B2117" />
+      <ellipse cx={120} cy={112} rx={8} ry={9} fill="#2B2117" />
+      <circle cx={82} cy={109} r={3} fill="#fff" />
+      <circle cx={122} cy={109} r={3} fill="#fff" />
+      {/* muzzle */}
+      <ellipse cx={100} cy={138} rx={24} ry={17} fill="#F5E8D0" />
+      <ellipse cx={100} cy={131} rx={8} ry={6} fill="#2B2117" />
+      <path d="M100 137 L100 143 M100 143 Q93 149 87 143 M100 143 Q107 149 113 143" stroke="#2B2117" strokeWidth={4} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Floki() {
-  const g = 'g-floki';
   return (
-    <>
-      <Aura id={g} c="#8ac" />
-      <circle cx={160} cy={118} r={98} fill={`url(#${g})`} />
-      {/* viking horns */}
-      <path d="M 122 76 Q 96 58 92 34 Q 116 40 132 64" fill={INK} opacity={0.2} stroke={INK} strokeWidth={3} />
-      <path d="M 198 76 Q 224 58 228 34 Q 204 40 188 64" fill={INK} opacity={0.2} stroke={INK} strokeWidth={3} />
+    <Badge bg="#D9822F">
+      {/* horns */}
+      <path d="M44 78 Q16 62 18 32 Q42 42 58 66 Z" fill="#F2E6D0" />
+      <path d="M156 78 Q184 62 182 32 Q158 42 142 66 Z" fill="#F2E6D0" />
+      {/* ears */}
+      <path d="M52 88 L44 50 L84 68 Z" fill="#C08A2F" />
+      <path d="M148 88 L156 50 L116 68 Z" fill="#C08A2F" />
       {/* head */}
-      <ellipse cx={160} cy={116} rx={46} ry={42} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={116} rx={46} ry={42} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* helmet band */}
-      <path d="M 116 96 Q 160 74 204 96 L 204 86 Q 160 64 116 86 Z" fill={INK} opacity={0.55} />
-      <path d="M 160 78 L 160 64" stroke={INK} strokeWidth={3} opacity={0.7} />
+      <ellipse cx={100} cy={112} rx={52} ry={48} fill="#E0A94A" />
+      {/* helmet */}
+      <path d="M42 94 Q100 54 158 94 L158 80 Q100 40 42 80 Z" fill="#9AA3AD" />
+      <path d="M100 76 L100 56" stroke="#9AA3AD" strokeWidth={10} strokeLinecap="round" />
+      <path d="M42 80 Q100 40 158 80" stroke="#7A838D" strokeWidth={4} fill="none" />
       {/* eyes */}
-      <path d="M 132 112 Q 142 106 152 112 M 168 112 Q 178 106 188 112" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* brave smile */}
-      <path d="M 144 136 Q 160 146 176 136" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.7} />
-      {/* snout */}
-      <ellipse cx={160} cy={130} rx={14} ry={9} fill={INK} opacity={0.12} />
-    </>
+      <ellipse cx={80} cy={104} rx={7} ry={8} fill="#2B2117" />
+      <ellipse cx={120} cy={104} rx={7} ry={8} fill="#2B2117" />
+      <circle cx={82} cy={101} r={2.5} fill="#fff" />
+      <circle cx={122} cy={101} r={2.5} fill="#fff" />
+      {/* muzzle + smile */}
+      <ellipse cx={100} cy={136} rx={30} ry={22} fill="#F7E2BC" />
+      <ellipse cx={100} cy={128} rx={9} ry={7} fill="#2B2117" />
+      <path d="M100 135 L100 141 M100 141 Q90 149 82 141 M100 141 Q110 149 118 141" stroke="#2B2117" strokeWidth={4} fill="none" strokeLinecap="round" />
+    </Badge>
   );
 }
 
 function Bonk() {
-  const g = 'g-bonk';
   return (
-    <>
-      <Aura id={g} c="#c8e" />
-      <circle cx={160} cy={118} r={98} fill={`url(#${g})`} />
-      {/* the bat */}
-      <path d="M 78 186 L 196 56 L 212 72 L 94 202 Z" fill={INK} opacity={0.30} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 78 186 L 62 202" stroke={INK} strokeWidth={6} opacity={0.55} strokeLinecap="round" />
+    <Badge bg="#C9922F">
       {/* ears */}
-      <path d="M 126 92 L 116 54 L 152 80 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
-      <path d="M 194 92 L 204 54 L 168 80 Z" fill={INK} opacity={0.16} stroke={INK} strokeWidth={3} strokeLinejoin="round" />
+      <path d="M52 84 L44 38 L88 62 Z" fill="#A85F2A" />
+      <path d="M148 84 L156 38 L112 62 Z" fill="#A85F2A" />
+      <path d="M58 80 L52 48 L82 64 Z" fill="#C97A3C" />
+      <path d="M142 80 L148 48 L118 64 Z" fill="#C97A3C" />
       {/* head */}
-      <ellipse cx={160} cy={112} rx={44} ry={40} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={112} rx={44} ry={40} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      {/* fierce eyes */}
-      <path d="M 132 102 Q 142 96 152 104 M 168 104 Q 178 96 188 102" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      <circle cx={144} cy={106} r={3.5} fill={INK} opacity={0.9} />
-      <circle cx={176} cy={106} r={3.5} fill={INK} opacity={0.9} />
-      {/* snarl */}
-      <path d="M 142 132 Q 160 122 178 132" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      <path d="M 150 130 L 150 136 M 160 128 L 160 134 M 170 130 L 170 136" stroke={INK} strokeWidth={2} opacity={0.6} />
-    </>
+      <ellipse cx={100} cy={104} rx={52} ry={48} fill="#C97A3C" />
+      {/* eyes */}
+      <path d="M66 94 Q78 86 90 94" stroke="#2B2117" strokeWidth={6} fill="none" strokeLinecap="round" />
+      <path d="M110 94 Q122 86 134 94" stroke="#2B2117" strokeWidth={6} fill="none" strokeLinecap="round" />
+      <circle cx={78} cy={98} r={4} fill="#2B2117" />
+      <circle cx={122} cy={98} r={4} fill="#2B2117" />
+      {/* muzzle */}
+      <ellipse cx={100} cy={132} rx={32} ry={24} fill="#F2D9B5" />
+      <ellipse cx={100} cy={124} rx={9} ry={7} fill="#2B2117" />
+      {/* bone */}
+      <g transform="rotate(-12 100 146)">
+        <rect x={66} y={140} width={68} height={13} rx={6} fill="#F2E6D0" />
+        <circle cx={66} cy={140} r={10} fill="#F2E6D0" />
+        <circle cx={66} cy={153} r={10} fill="#F2E6D0" />
+        <circle cx={134} cy={140} r={10} fill="#F2E6D0" />
+        <circle cx={134} cy={153} r={10} fill="#F2E6D0" />
+      </g>
+    </Badge>
   );
 }
 
 function Brett() {
-  const g = 'g-brett';
   return (
-    <>
-      <Aura id={g} c="#6ac" />
-      <circle cx={160} cy={118} r={98} fill={`url(#${g})`} />
-      {/* head */}
-      <ellipse cx={160} cy={112} rx={50} ry={50} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={112} rx={50} ry={50} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* messy hair */}
-      <path d="M 118 78 Q 130 62 142 72 Q 152 58 164 70 Q 176 58 188 72 Q 198 64 204 82" fill="none" stroke={INK} strokeWidth={3} opacity={0.7} />
+    <Badge bg="#2F6A9A">
+      {/* hair spikes */}
+      <path d="M46 84 Q42 56 58 62 Q54 38 72 48 Q70 26 88 42 Q92 22 106 42 Q120 26 122 46 Q142 38 138 62 Q154 58 152 86 Z" fill="#1E3A5A" />
+      {/* face */}
+      <ellipse cx={100} cy={110} rx={54} ry={50} fill="#6FA8D9" />
+      <ellipse cx={100} cy={152} rx={42} ry={14} fill="#4F88B9" />
       {/* half-lidded eyes */}
-      <path d="M 130 106 Q 142 112 154 106 M 166 106 Q 178 112 190 106" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      <line x1={132} y1={106} x2={152} y2={106} stroke={INK} strokeWidth={3} opacity={0.85} />
-      <line x1={168} y1={106} x2={188} y2={106} stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* chill smile */}
-      <path d="M 138 132 Q 160 146 182 132" fill="none" stroke={INK} strokeWidth={3} opacity={0.85} />
-      {/* arms behind head */}
-      <path d="M 104 132 Q 112 96 132 86 M 216 132 Q 208 96 188 86" fill="none" stroke={INK} strokeWidth={3} opacity={0.45} />
-    </>
+      <path d="M62 102 Q78 94 94 102" stroke="#16324A" strokeWidth={6} fill="none" strokeLinecap="round" />
+      <path d="M106 102 Q122 94 138 102" stroke="#16324A" strokeWidth={6} fill="none" strokeLinecap="round" />
+      <line x1={64} y1={104} x2={92} y2={104} stroke="#16324A" strokeWidth={6} />
+      <line x1={108} y1={104} x2={136} y2={104} stroke="#16324A" strokeWidth={6} />
+      {/* chill grin */}
+      <path d="M70 132 Q100 160 130 132" stroke="#16324A" strokeWidth={6} fill="none" strokeLinecap="round" />
+      <path d="M78 140 L78 150 M100 146 L100 156 M122 140 L122 150" stroke="#F2F6FA" strokeWidth={5} />
+    </Badge>
   );
 }
 
 /* ---------- LEGENDARY ---------- */
 
 function Doge() {
-  const g = 'g-doge';
   return (
-    <>
-      <Aura id={g} c="#ec8" />
-      <circle cx={160} cy={118} r={100} fill={`url(#${g})`} />
+    <Badge bg="#C9A24A">
       {/* ears */}
-      <path d="M 120 92 L 106 46 L 150 78 Z" fill={INK} opacity={0.20} stroke={INK} strokeWidth={3.4} strokeLinejoin="round" />
-      <path d="M 200 92 L 214 46 L 170 78 Z" fill={INK} opacity={0.20} stroke={INK} strokeWidth={3.4} strokeLinejoin="round" />
+      <path d="M50 80 L40 30 L86 58 Z" fill="#B07C2A" />
+      <path d="M150 80 L160 30 L114 58 Z" fill="#B07C2A" />
+      <path d="M56 76 L50 46 L82 62 Z" fill="#D9A441" />
+      <path d="M144 76 L150 46 L118 62 Z" fill="#D9A441" />
       {/* head */}
-      <ellipse cx={160} cy={110} rx={50} ry={46} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={110} rx={50} ry={46} fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      {/* the knowing eyes */}
-      <Eyes y={102} r={10} pupil={4} />
-      {/* iconic smirk */}
-      <path d="M 136 128 Q 160 146 184 126" fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      <path d="M 142 132 Q 160 142 178 130" fill="none" stroke={INK} strokeWidth={1.8} opacity={0.5} />
-      {/* snout */}
-      <ellipse cx={160} cy={126} rx={18} ry={12} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={119} rx={6} ry={4} fill={INK} opacity={0.85} />
-      {/* halo */}
-      <ellipse cx={160} cy={48} rx={30} ry={8} fill="none" stroke={INK} strokeWidth={2.4} opacity={0.4} />
-    </>
+      <ellipse cx={100} cy={108} rx={56} ry={52} fill="#D9A441" />
+      <ellipse cx={100} cy={154} rx={44} ry={14} fill="#C08A2F" />
+      {/* muzzle */}
+      <ellipse cx={100} cy={132} rx={36} ry={26} fill="#F2DDB4" />
+      {/* eyes */}
+      <ellipse cx={78} cy={100} rx={9} ry={10} fill="#2B2117" />
+      <ellipse cx={122} cy={100} rx={9} ry={10} fill="#2B2117" />
+      <circle cx={80.5} cy={97} r={3} fill="#fff" />
+      <circle cx={124.5} cy={97} r={3} fill="#fff" />
+      {/* brows */}
+      <path d="M66 86 Q78 80 90 86" stroke="#8A5A1E" strokeWidth={5} fill="none" strokeLinecap="round" />
+      <path d="M110 86 Q122 80 134 86" stroke="#8A5A1E" strokeWidth={5} fill="none" strokeLinecap="round" />
+      {/* nose + smile */}
+      <ellipse cx={100} cy={124} rx={10} ry={8} fill="#2B2117" />
+      <path d="M100 132 L100 140 M100 140 Q90 148 82 140 M100 140 Q110 148 118 140" stroke="#2B2117" strokeWidth={4} fill="none" strokeLinecap="round" />
+      {/* blush */}
+      <ellipse cx={58} cy={126} rx={10} ry={6} fill="#E8B96A" />
+      <ellipse cx={142} cy={126} rx={10} ry={6} fill="#E8B96A" />
+    </Badge>
   );
 }
 
 function Shib() {
-  const g = 'g-shib';
   return (
-    <>
-      <Aura id={g} c="#a6e" />
-      <circle cx={160} cy={118} r={100} fill={`url(#${g})`} />
-      {/* sharper ears */}
-      <path d="M 118 88 L 104 38 L 150 76 Z" fill={INK} opacity={0.22} stroke={INK} strokeWidth={3.4} strokeLinejoin="round" />
-      <path d="M 202 88 L 216 38 L 170 76 Z" fill={INK} opacity={0.22} stroke={INK} strokeWidth={3.4} strokeLinejoin="round" />
+    <Badge bg="#D9542F">
+      {/* ears */}
+      <path d="M48 78 L36 26 L86 56 Z" fill="#C06A1E" />
+      <path d="M152 78 L164 26 L114 56 Z" fill="#C06A1E" />
+      <path d="M54 74 L46 42 L80 60 Z" fill="#F08A3C" />
+      <path d="M146 74 L154 42 L120 60 Z" fill="#F08A3C" />
       {/* head */}
-      <ellipse cx={160} cy={110} rx={48} ry={44} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={110} rx={48} ry={44} fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      {/* intense eyes */}
-      <path d="M 132 100 Q 142 94 152 102 M 168 102 Q 178 94 188 100" fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      <circle cx={143} cy={104} r={4} fill={INK} opacity={0.9} />
-      <circle cx={177} cy={104} r={4} fill={INK} opacity={0.9} />
-      {/* teeth */}
-      <path d="M 136 130 Q 160 148 184 130" fill="none" stroke={INK} strokeWidth={3.2} opacity={0.9} />
-      <path d="M 146 138 L 146 146 M 160 142 L 160 150 M 174 138 L 174 146" stroke={INK} strokeWidth={2.4} opacity={0.7} />
-      {/* bone */}
-      <path d="M 128 56 Q 160 44 192 56" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.45} />
-      <circle cx={124} cy={56} r={5} fill={INK} opacity={0.4} />
-      <circle cx={196} cy={56} r={5} fill={INK} opacity={0.4} />
-    </>
+      <ellipse cx={100} cy={106} rx={54} ry={50} fill="#F08A3C" />
+      <ellipse cx={100} cy={152} rx={42} ry={14} fill="#D9742A" />
+      {/* muzzle */}
+      <ellipse cx={100} cy={130} rx={34} ry={24} fill="#F7D9B0" />
+      {/* eyes */}
+      <ellipse cx={78} cy={98} rx={8} ry={10} fill="#2B2117" />
+      <ellipse cx={122} cy={98} rx={8} ry={10} fill="#2B2117" />
+      <circle cx={80} cy={94} r={3} fill="#fff" />
+      <circle cx={124} cy={94} r={3} fill="#fff" />
+      {/* nose */}
+      <ellipse cx={100} cy={122} rx={10} ry={8} fill="#2B2117" />
+      {/* grin + tongue */}
+      <path d="M100 130 L100 138 M100 138 Q88 150 78 138 M100 138 Q112 150 122 138" stroke="#2B2117" strokeWidth={4} fill="none" strokeLinecap="round" />
+      <path d="M92 146 Q100 160 108 146 Z" fill="#E86A7A" />
+    </Badge>
   );
 }
 
 function Pepe() {
-  const g = 'g-pepe';
   return (
-    <>
-      <Aura id={g} c="#8e8" />
-      <circle cx={160} cy={118} r={100} fill={`url(#${g})`} />
+    <Badge bg="#3E7A3E">
       {/* head */}
-      <ellipse cx={160} cy={116} rx={52} ry={50} fill={INK} opacity={0.12} />
-      <ellipse cx={160} cy={116} rx={52} ry={50} fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      {/* bulging eyes */}
-      <circle cx={138} cy={88} r={18} fill={INK} opacity={0.16} stroke={INK} strokeWidth={3.2} />
-      <circle cx={182} cy={88} r={18} fill={INK} opacity={0.16} stroke={INK} strokeWidth={3.2} />
-      <circle cx={138} cy={88} r={6} fill={INK} opacity={0.9} />
-      <circle cx={182} cy={88} r={6} fill={INK} opacity={0.9} />
-      {/* the smile — the whole point */}
-      <path d="M 118 124 Q 160 172 202 124" fill="none" stroke={INK} strokeWidth={3.6} opacity={0.95} />
-      <path d="M 122 124 Q 160 162 198 124" fill="none" stroke={INK} strokeWidth={1.8} opacity={0.5} />
-      {/* lips line */}
-      <line x1={118} y1={124} x2={202} y2={124} stroke={INK} strokeWidth={2.4} opacity={0.6} />
+      <ellipse cx={100} cy={110} rx={58} ry={54} fill="#6FA84A" />
+      <ellipse cx={100} cy={156} rx={46} ry={14} fill="#5A8F3A" />
+      {/* eyes */}
+      <circle cx={72} cy={86} r={21} fill="#F2F2E8" />
+      <circle cx={128} cy={86} r={21} fill="#F2F2E8" />
+      <circle cx={72} cy={90} r={9} fill="#1A1A1A" />
+      <circle cx={128} cy={90} r={9} fill="#1A1A1A" />
+      <circle cx={76} cy={84} r={3.5} fill="#fff" />
+      <circle cx={132} cy={84} r={3.5} fill="#fff" />
       {/* nostrils */}
-      <ellipse cx={152} cy={112} rx={4} ry={3} fill={INK} opacity={0.6} />
-      <ellipse cx={168} cy={112} rx={4} ry={3} fill={INK} opacity={0.6} />
+      <ellipse cx={90} cy={110} rx={4} ry={3} fill="#3A5A22" />
+      <ellipse cx={110} cy={110} rx={4} ry={3} fill="#3A5A22" />
+      {/* lips */}
+      <path d="M42 118 Q100 178 158 118 Q100 148 42 118 Z" fill="#B23A3A" />
+      <path d="M52 120 Q100 162 148 120 Q100 140 52 120 Z" fill="#7A1F1F" />
+      <path d="M42 118 Q100 178 158 118" stroke="#7A1F1F" strokeWidth={5} fill="none" />
       {/* blush */}
-      <ellipse cx={120} cy={118} rx={9} ry={5} fill={INK} opacity={0.18} />
-      <ellipse cx={200} cy={118} rx={9} ry={5} fill={INK} opacity={0.18} />
-    </>
+      <circle cx={48} cy={124} r={8} fill="#5A8F3A" />
+      <circle cx={152} cy={124} r={8} fill="#5A8F3A" />
+    </Badge>
   );
 }
 
 /* ---------- MYTHIC ---------- */
 
 function Satoshi() {
-  const g = 'g-satoshi';
   return (
-    <>
-      <Aura id={g} c="#fc6" />
-      <circle cx={160} cy={118} r={104} fill={`url(#${g})`} />
-      {/* ghost rings */}
-      <circle cx={160} cy={118} r={82} fill="none" stroke={INK} strokeWidth={2} opacity={0.25} />
-      <circle cx={160} cy={118} r={70} fill="none" stroke={INK} strokeWidth={1.5} opacity={0.18} />
-      {/* bitcoin medallion */}
-      <circle cx={160} cy={118} r={50} fill={INK} opacity={0.10} />
-      <circle cx={160} cy={118} r={50} fill="none" stroke={INK} strokeWidth={3.4} opacity={0.9} />
-      <circle cx={160} cy={118} r={42} fill="none" stroke={INK} strokeWidth={1.5} opacity={0.35} />
-      {/* B */}
-      <path d="M 148 90 L 148 146 L 168 146 Q 182 146 182 132 Q 182 122 170 119 Q 180 116 180 106 Q 180 94 166 94 L 148 90 Z" fill="none" stroke={INK} strokeWidth={4} opacity={0.95} strokeLinejoin="round" />
-      <path d="M 158 94 L 158 86 M 168 94 L 168 86 M 158 146 L 158 154 M 168 146 L 168 154" stroke={INK} strokeWidth={3} opacity={0.8} />
-      <path d="M 148 118 L 166 118" stroke={INK} strokeWidth={3} opacity={0.8} />
-      {/* particles */}
-      {[0,1,2,3,4,5,6,7].map(i => {
-        const a = (i * 45) * Math.PI / 180;
-        return <circle key={i} cx={160 + Math.cos(a) * 88} cy={118 + Math.sin(a) * 88} r={2.5} fill={INK} opacity={0.4} />;
-      })}
-    </>
+    <Badge bg="#1F2A3A">
+      {/* hooded ghost */}
+      <path d="M100 18 Q56 18 52 74 Q50 116 66 138 L66 184 L134 184 L134 138 Q150 116 148 74 Q144 18 100 18 Z" fill="#33445A" />
+      <path d="M100 40 Q72 40 70 78 Q68 106 80 122 L80 170 L120 170 L120 122 Q132 106 130 78 Q128 40 100 40 Z" fill="#22303F" />
+      {/* coin */}
+      <circle cx={100} cy={106} r={62} fill="#E8C15A" />
+      <circle cx={100} cy={106} r={62} fill="none" stroke="#A87C1E" strokeWidth={7} />
+      <circle cx={100} cy={106} r={50} fill="none" stroke="#C9A23A" strokeWidth={3} />
+      <text x={100} y={132} textAnchor="middle" fontFamily="'Space Grotesk', sans-serif" fontWeight={700} fontSize={68} fill="#7A5A10">B</text>
+      {/* sparkles */}
+      <circle cx={40} cy={54} r={4} fill="#E8C15A" />
+      <circle cx={160} cy={66} r={3} fill="#E8C15A" />
+      <circle cx={46} cy={150} r={3} fill="#E8C15A" />
+    </Badge>
   );
 }
 
 function Vitalik() {
-  const g = 'g-vitalik';
   return (
-    <>
-      <Aura id={g} c="#8cf" />
-      <circle cx={160} cy={118} r={104} fill={`url(#${g})`} />
-      {/* head */}
-      <ellipse cx={160} cy={106} rx={40} ry={50} fill={INK} opacity={0.10} />
-      <ellipse cx={160} cy={106} rx={40} ry={50} fill="none" stroke={INK} strokeWidth={3.2} opacity={0.85} />
-      {/* wispy hair */}
-      <path d="M 120 82 Q 132 54 160 58 Q 190 52 200 82" fill={INK} opacity={0.30} />
-      <path d="M 126 70 Q 146 50 168 58" fill="none" stroke={INK} strokeWidth={2.4} opacity={0.5} />
+    <Badge bg="#2F5A8A">
+      {/* shirt */}
+      <path d="M24 200 Q38 160 72 152 L128 152 Q162 160 176 200 Z" fill="#7FB8D9" />
+      {/* unicorn horn */}
+      <path d="M96 166 L100 148 L104 166 Z" fill="#F2E6D0" />
+      {/* face */}
+      <ellipse cx={100} cy={104} rx={38} ry={46} fill="#F0C09A" />
+      {/* hair */}
+      <path d="M60 100 Q56 52 100 46 Q144 52 140 100 Q136 76 124 68 Q110 58 100 66 Q88 58 76 68 Q64 76 60 100 Z" fill="#6B4A2F" />
+      <path d="M64 92 Q64 62 100 56 Q136 62 136 92 Q130 72 118 66 Q106 74 100 66 Q92 74 82 66 Q70 72 64 92 Z" fill="#543822" />
       {/* glasses */}
-      <rect x={128} y={92} width={28} height={22} rx={7} fill={INK} opacity={0.12} />
-      <rect x={164} y={92} width={28} height={22} rx={7} fill={INK} opacity={0.12} />
-      <rect x={128} y={92} width={28} height={22} rx={7} fill="none" stroke={INK} strokeWidth={3} opacity={0.9} />
-      <rect x={164} y={92} width={28} height={22} rx={7} fill="none" stroke={INK} strokeWidth={3} opacity={0.9} />
-      <line x1={156} y1={103} x2={164} y2={103} stroke={INK} strokeWidth={2.6} opacity={0.8} />
-      <circle cx={142} cy={103} r={3} fill={INK} opacity={0.7} />
-      <circle cx={178} cy={103} r={3} fill={INK} opacity={0.7} />
+      <rect x={66} y={94} width={28} height={24} rx={8} fill="#D9E8F0" fillOpacity={0.35} stroke="#1E2A38" strokeWidth={4} />
+      <rect x={106} y={94} width={28} height={24} rx={8} fill="#D9E8F0" fillOpacity={0.35} stroke="#1E2A38" strokeWidth={4} />
+      <line x1={94} y1={106} x2={106} y2={106} stroke="#1E2A38" strokeWidth={4} />
+      <circle cx={80} cy={106} r={3} fill="#1E2A38" />
+      <circle cx={120} cy={106} r={3} fill="#1E2A38" />
       {/* smile */}
-      <path d="M 148 128 Q 160 134 172 128" fill="none" stroke={INK} strokeWidth={2.4} opacity={0.7} />
-      {/* unicorn shirt */}
-      <path d="M 112 168 Q 136 152 160 156 Q 184 152 208 168" fill={INK} opacity={0.14} />
-      <path d="M 112 168 Q 136 152 160 156 Q 184 152 208 168" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.6} />
-      <path d="M 156 156 L 160 140 L 164 156" fill="none" stroke={INK} strokeWidth={2.6} opacity={0.55} strokeLinejoin="round" />
-      {/* ethereum diamond */}
-      <path d="M 160 176 L 146 186 L 160 196 L 174 186 Z" fill="none" stroke={INK} strokeWidth={2} opacity={0.4} />
-    </>
+      <path d="M88 130 Q100 138 112 130" stroke="#8A5A3A" strokeWidth={4} fill="none" strokeLinecap="round" />
+      {/* ethereum mark */}
+      <path d="M100 172 L90 182 L100 192 L110 182 Z" fill="#F2F6FA" opacity={0.85} />
+    </Badge>
   );
 }

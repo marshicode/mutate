@@ -135,7 +135,7 @@ function CardLite({ card }: { card: CardDef }) {
     <div className="card__stage">
       <div className="card__band" />
       <div className="card__art">
-        <svg viewBox="60 20 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           {cardArtJSX(card.artKey)}
         </svg>
       </div>
